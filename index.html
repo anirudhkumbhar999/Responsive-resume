@@ -39,13 +39,14 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <a href="#" class="text-2xl font-bold text-green-400 font-mono">&lt;AnirudhKumbhar/&gt;</a>
-                <div class="hidden md:flex space-x-6">
+                <div class="hidden md:flex items-center space-x-6">
                     <a href="#about" class="nav-link">About</a>
                     <a href="#academics" class="nav-link">Academics</a>
                     <a href="#skills" class="nav-link">Skills</a>
                     <a href="#projects" class="nav-link">Projects</a>
+                    <a href="https://drive.google.com/file/d/1ywQ5y7ITe7foKKB3QxjhmF1YYTz7VhaL/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="nav-link">Resume</a>
                     <a href="#contact"
-                        class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition duration-300 font-mono">Contact</a>
+                        class="bg-green-500 text-zinc-950 px-4 py-2 rounded hover:bg-green-600 transition duration-300 font-mono font-bold">Contact</a>
                 </div>
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-green-400 hover:text-green-300 focus:outline-none">
@@ -63,8 +64,9 @@
             <a href="#academics" class="block py-2 px-4 text-sm nav-link">Academics</a>
             <a href="#skills" class="block py-2 px-4 text-sm nav-link">Skills</a>
             <a href="#projects" class="block py-2 px-4 text-sm nav-link">Projects</a>
+            <a href="https://drive.google.com/file/d/1ywQ5y7ITe7foKKB3QxjhmF1YYTz7VhaL/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="block py-2 px-4 text-sm nav-link">Resume</a>
             <a href="#contact"
-                class="block py-2 px-4 text-sm bg-green-500 text-white rounded-full mt-2 font-mono">Contact</a>
+                class="block py-2 px-4 text-sm bg-green-500 text-zinc-950 rounded-full mt-2 mx-4 font-mono text-center font-bold">Contact</a>
         </div>
     </nav>
     <main>
@@ -205,6 +207,7 @@
                                 400: '#4ade80',
                                 300: '#86efac',
                                 500: '#22c55e',
+                                600: '#16a34a',
                             }
                         },
                         fontFamily: {
@@ -213,12 +216,13 @@
                     }
                 }
             };
-            // Navigation
+            
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
+
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     if (this.getAttribute('href') === '#') return;
@@ -229,7 +233,7 @@
                     });
                 });
             });
-            // Academics Chart
+            
             const ctx = document.getElementById('academicsChart').getContext('2d');
             const academicsChart = new Chart(ctx, {
                 type: 'bar',
@@ -239,14 +243,14 @@
                         label: 'Percentage Score',
                         data: [91, 82, 92],
                         backgroundColor: [
-                            'rgba(34, 197, 94, 0.7)',
-                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(74, 222, 128, 0.7)',
+                            'rgba(96, 165, 250, 0.7)',
                             'rgba(251, 191, 36, 0.7)'
                         ],
                         borderColor: [
-                            'rgba(34, 197, 94, 1)',
-                            'rgba(59, 130, 246, 1)',
-                            'rgba(251, 191, 36, 1)'
+                            '#4ade80',
+                            '#60a5fa',
+                            '#fbb_f24'
                         ],
                         borderWidth: 2
                     }]
@@ -264,10 +268,12 @@
                                 color: '#a1a1aa',
                                 font: { family: 'Fira Mono', size: 14 }
                             },
-                            ticks: { color: '#a1a1aa', font: { family: 'Fira Mono' } }
+                            ticks: { color: '#a1a1aa', font: { family: 'Fira Mono' } },
+                            grid: { color: '#27272a' }
                         },
                         x: {
-                            ticks: { color: '#a1a1aa', font: { family: 'Fira Mono' } }
+                            ticks: { color: '#a1a1aa', font: { family: 'Fira Mono' } },
+                            grid: { color: '#27272a' }
                         }
                     },
                     plugins: {
@@ -286,7 +292,7 @@
                     }
                 }
             });
-            // Dynamic Skills
+            
             const skills = [
                 'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'React Native', 'Node.js', 'Express', 'EJS', 'SQL', 'MongoDB', 'Java', 'Git', 'TailwindCSS', 'Docker'
             ];
@@ -297,7 +303,7 @@
                 span.textContent = skill;
                 skillsList.appendChild(span);
             });
-            // Dynamic Projects
+            
             const projects = [
                 {
                     title: 'Front-end Web Dev Internship',
@@ -318,6 +324,7 @@
                 {
                     title: 'Bulk Messaging System',
                     description: 'A system for customer relationship management.',
+                    github: 'https://github.com/anirudhkumbhar999/Bulk-messaging',
                     details: [
                         'Designed and implemented the Web App for customer management.',
                         'Connected to Supabase for robust database management.'
@@ -328,34 +335,53 @@
             projects.forEach(project => {
                 const card = document.createElement('div');
                 card.className = 'project-card';
-                let html = `<h3 class='text-xl font-bold mb-2 text-green-300 font-mono'>${project.title}</h3>`;
-                if (project.company) html += `<p class='font-semibold text-green-400 mb-2 font-mono'>${project.company}</p>`;
-                if (project.period) html += `<p class='text-zinc-400 text-sm mb-4 font-mono'>${project.period}</p>`;
-                html += `<p class='text-zinc-400 text-sm mb-4 font-mono'>${project.description}</p>`;
+                
+                let content = `
+                    <h3 class='text-xl font-bold mb-2 text-green-300 font-mono'>${project.title}</h3>
+                    ${project.company ? `<p class='font-semibold text-green-400 mb-2 font-mono'>${project.company}</p>` : ''}
+                    ${project.period ? `<p class='text-zinc-400 text-sm mb-4 font-mono'>${project.period}</p>` : ''}
+                    <p class='text-zinc-400 text-sm mb-4 font-mono flex-grow'>${project.description}</p>
+                `;
+                
+                const buttonContainer = document.createElement('div');
+                buttonContainer.className = 'mt-auto pt-4 flex flex-wrap justify-center gap-2';
+
                 if (project.certificate) {
-                    html += `<a href='${project.certificate}' target='_blank' rel='noopener noreferrer' class='details-btn'>View Certificate</a>`;
+                    buttonContainer.innerHTML += `<a href='${project.certificate}' target='_blank' rel='noopener noreferrer' class='details-btn'>View Certificate</a>`;
+                }
+                if (project.github) {
+                    buttonContainer.innerHTML += `<a href='${project.github}' target='_blank' rel='noopener noreferrer' class='details-btn'>View Code</a>`;
                 }
                 if (project.details) {
-                    html += `<button class='toggle-details-btn details-btn mt-2'>View Details</button>`;
-                    html += `<div class='project-details hidden mt-4 text-left text-sm space-y-2 font-mono'>`;
-                    project.details.forEach(line => {
-                        html += `<p>• ${line}</p>`;
-                    });
-                    html += `</div>`;
+                    buttonContainer.innerHTML += `<button class='toggle-details-btn details-btn'>View Details</button>`;
                 }
-                card.innerHTML = html;
+                
+                let detailsDiv = '';
+                if (project.details) {
+                    detailsDiv = `<div class='project-details hidden mt-4 text-left text-sm space-y-2 font-mono'>
+                        ${project.details.map(line => `<p>• ${line}</p>`).join('')}
+                    </div>`;
+                }
+
+                card.innerHTML = content;
+                card.appendChild(buttonContainer);
+                if(project.details) {
+                    card.insertAdjacentHTML('beforeend', detailsDiv);
+                }
+                
                 projectsList.appendChild(card);
             });
-            // Toggle project details
+            
             document.querySelectorAll('.toggle-details-btn').forEach(button => {
-                button.addEventListener('click', () => {
-                    const details = button.nextElementSibling;
-                    details.classList.toggle('hidden');
-                    button.textContent = details.classList.contains('hidden') ? 'View Details' : 'Hide Details';
+                button.addEventListener('click', (e) => {
+                    const details = e.target.closest('.project-card').querySelector('.project-details');
+                    if(details) {
+                        details.classList.toggle('hidden');
+                        e.target.textContent = details.classList.contains('hidden') ? 'View Details' : 'Hide Details';
+                    }
                 });
             });
-            // Intersection Observer for fade-in
-            const projectCards = document.querySelectorAll('.project-card');
+
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -365,34 +391,50 @@
                     }
                 });
             }, observerOptions);
-            projectCards.forEach(card => observer.observe(card));
-            // Add styles
+            document.querySelectorAll('.project-card').forEach(card => observer.observe(card));
+            
             const style = document.createElement('style');
             style.innerHTML = `
                 .nav-link {
                     color: #a1a1aa;
                     font-family: 'Fira Mono', monospace;
                     transition: color 0.2s;
+                    position: relative;
+                    padding-bottom: 4px;
+                }
+                .nav-link::after {
+                    content: '';
+                    position: absolute;
+                    width: 0;
+                    height: 2px;
+                    bottom: 0;
+                    left: 0;
+                    background-color: #4ade80;
+                    transition: width 0.3s ease-in-out;
+                }
+                .nav-link:hover::after {
+                    width: 100%;
                 }
                 .nav-link:hover {
-                    color: #4ade80;
+                    color: #d4d4d8;
                 }
                 .skill-tag {
                     background-color: #27272a;
                     color: #a1a1aa;
                     padding: 0.5rem 1rem;
-                    border-radius: 9999px;
+                    border-radius: 6px;
                     font-weight: 500;
                     font-family: 'Fira Mono', monospace;
                     transition: all 0.3s ease-in-out;
                     cursor: pointer;
-                    border: 1px solid #18181b;
+                    border: 1px solid #27272a;
                 }
                 .skill-tag:hover {
-                    background-color: #22c55e;
+                    background-color: #4ade80;
                     color: #18181b;
                     transform: translateY(-2px) scale(1.05);
-                    box-shadow: 0 4px 12px rgba(34,197,94,0.15);
+                    box-shadow: 0 4px 12px rgba(74,222,128,0.15);
+                    border-color: #4ade80;
                 }
                 .project-card {
                     background-color: #18181b;
@@ -400,18 +442,18 @@
                     border-radius: 0.5rem;
                     box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2), 0 2px 4px -1px rgba(0,0,0,0.15);
                     text-align: center;
-                    transition: transform 0.3s, box-shadow 0.3s;
+                    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-between;
                     border: 1px solid #27272a;
                 }
                 .project-card:hover {
                     transform: translateY(-5px) scale(1.02);
-                    box-shadow: 0 10px 15px -3px rgba(34,197,94,0.08), 0 4px 6px -2px rgba(0,0,0,0.12);
+                    box-shadow: 0 10px 15px -3px rgba(74,222,128,0.08), 0 4px 6px -2px rgba(0,0,0,0.12);
+                    border-color: #4ade80;
                 }
                 .details-btn {
-                    background-color: #27272a;
+                    background-color: transparent;
                     color: #4ade80;
                     padding: 0.5rem 1rem;
                     border-radius: 9999px;
@@ -419,7 +461,6 @@
                     font-weight: 500;
                     font-family: 'Fira Mono', monospace;
                     transition: background-color 0.3s, color 0.3s;
-                    margin-top: auto;
                     display: inline-block;
                     text-decoration: none;
                     border: 1px solid #4ade80;
